@@ -58,6 +58,7 @@ if st.button("Predict Purchase", type="primary"):
     input_scaled = scaler.transform(input_data)
 
     prediction = model.predict(input_scaled)[0]
+    probability = model.predict_proba(input_scaled)[0][1]
     st.divider()
     st.subheader("Prediction Result")
 
@@ -65,4 +66,4 @@ if st.button("Predict Purchase", type="primary"):
         st.success("The customer is likely to purchase the product!")
     else:
         st.info("The customer is unlikely to purchase the product.")
-        
+    st.write("Purchase Probability:{:.2f}%".format(probability*100))
